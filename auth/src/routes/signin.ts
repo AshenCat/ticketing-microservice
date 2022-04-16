@@ -22,12 +22,12 @@ router.post('/api/users/signin', [
         const {email, password} = req.body;
         const existingUser = await User.findOne({email});
         if (!existingUser) {
-            console.log('user not found')
+            // console.log('user not found')
             throw new BadRequestError('Invalid credentials');
         }
         const passwordsMatch = await Password.compare(existingUser.password, password);
         if(!passwordsMatch) {
-            console.log('password do not match')
+            // console.log('password do not match')
             throw new BadRequestError('Invalid credentials');
         }
         //Generate JWT
