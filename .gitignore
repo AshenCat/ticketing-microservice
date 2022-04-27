@@ -1,3 +1,4 @@
 _docs/_*.md
 *node_modules
 *.next
+*.dtmp

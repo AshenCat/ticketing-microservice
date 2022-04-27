@@ -28,6 +28,8 @@ kubectl describe deployment [depl_name]
 kubectl apply -f [config file name]
 kubectl delete deployment [depl_name]
 
+kubectl exec -it auth-depl-75cdbfccff-xrgns sh
+
 kubectl rollout restart deployment [depl_name]
 
 kubectl create secret generic jwt-secret --from-literal=jwt=asdf
