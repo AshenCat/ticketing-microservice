@@ -14,7 +14,7 @@ docker logs [contianer id]
     - print out logs from the given container
 docker push kliffordagujar/posts
 
-# K8s commands
+# K8s commands 
 
 kubectl get pods
 kubectl exec -it [pod_name] [cmd]
@@ -32,6 +32,12 @@ kubectl exec -it auth-depl-75cdbfccff-xrgns sh
 
 kubectl rollout restart deployment [depl_name]
 
-kubectl create secret generic jwt-secret --from-literal=jwt=asdf
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdfasdf
 
+# run skaffold
 skaffold dev
+
+
+# common stuff
+kubectl get secrets #to get global secrets
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=IGORISPHAT
