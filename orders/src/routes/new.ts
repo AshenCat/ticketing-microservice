@@ -4,7 +4,7 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
 import { Order } from '../models/order';
-import { OrderCreatedPublisher } from '../publishers/order-created-publisher';
+import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';
 import { natsWrapper } from '../nats-wrapper';
 
 const EXPIRATION_WINDOW_SECONDS = 15 * 60;
@@ -53,6 +53,7 @@ router.post('/api/orders',
             status: order.status,
             userId: order.userId,
             expiresAt: order.expiresAt.toISOString(),
+            version: order.version,
             ticket: {
                 id: ticket.id,
                 price: ticket.price,

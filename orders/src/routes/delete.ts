@@ -2,7 +2,7 @@ import { NotAuthorizedError, NotFoundError, OrderStatus, requireAuth } from '@kw
 import express, { Request, Response } from 'express';
 import { Order } from '../models/order';
 import { natsWrapper } from '../nats-wrapper';
-import { OrderCancelledPublisher } from '../publishers/order-cancelled-publisher';
+import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
 
 const router = express.Router();
 
@@ -25,6 +25,7 @@ router.delete('/api/orders/:orderId',
 
         new OrderCancelledPublisher(natsWrapper.client).publish({
             id: order.id,
+            version: order.version,
             ticket: {
                 id: order.ticket.id,
             }
